@@ -234,6 +234,14 @@ h1 {
     font-size: 14px;
 }
 
+#history-list li span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
 #history-list li .copy-history-btn {
     background: none;
     border: none;

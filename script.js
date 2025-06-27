@@ -194,7 +194,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始加载历史记录
     updateHistoryList();
-
-    // 初始生成密码
-    generateBtn.click();
 });
