@@ -32,6 +32,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.main-wrapper {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 20px;
+}
+
 .container {
     background-color: var(--container-bg);
     padding: 40px;
@@ -187,6 +195,146 @@ h1 {
 
 #generate-btn:hover {
     background-color: var(--primary-hover-color);
+}
+
+.history-container {
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-container h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#history-list li {
+    background-color: var(--input-bg);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'SF Mono', 'Fira Code', 'Source Code Pro', monospace;
+    font-size: 14px;
+}
+
+#history-list li .copy-history-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+#clear-history-btn {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: var(--weak-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#clear-history-btn:hover {
+    background-color: #c62828;
+}
+
+.instructions-container {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.instructions-container details {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+}
+
+.instructions-container summary {
+    padding: 12px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    list-style: none; /* 隐藏默认的三角箭头 */
+}
+
+.instructions-container summary::-webkit-details-marker {
+    display: none; /* 隐藏默认的三角箭头 for Chrome */
+}
+
+.instructions-container summary::before {
+    content: '▶';
+    margin-right: 10px;
+    font-size: 12px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.instructions-container details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.instructions-content {
+    padding: 0 15px 15px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 10px;
+}
+
+.instructions-content h2 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.instructions-content ol {
+    padding-left: 20px;
+}
+
+.instructions-content ul {
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.instructions-content li {
+    margin-bottom: 5px;
+}
+
+.tip {
+    font-size: 14px;
+    color: #6e6e73;
+    margin-top: 15px;
+}
+
+
+@media (max-width: 800px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+
+    .history-container {
+        width: 100%;
+    }
 }
 
 @media (max-width: 520px) {

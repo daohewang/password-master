@@ -1,4 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 从localStorage加载历史记录
+    let passwordHistory = JSON.parse(localStorage.getItem('passwordHistory') || '[]');
+
+    // 更新历史记录列表
+    function updateHistoryList() {
+        const historyList = document.getElementById('history-list');
+        historyList.innerHTML = '';
+        
+        passwordHistory.slice(0, 10).forEach((password, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${password}</span>
+                <button class="copy-history-btn" title="复制密码">📋</button>
+            `;
+            
+            const copyBtn = li.querySelector('.copy-history-btn');
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(password);
+                    copyBtn.textContent = '✓';
+                    setTimeout(() => {
+                        copyBtn.textContent = '📋';
+                    }, 2000);
+                } catch (err) {
+                    alert('复制失败，请手动复制');
+                }
+            });
+            
+            historyList.appendChild(li);
+        });
+    }
+
+    // 添加新密码到历史记录
+    function addToHistory(password) {
+        passwordHistory.unshift(password);
+        if (passwordHistory.length > 10) {
+            passwordHistory = passwordHistory.slice(0, 10);
+        }
+        localStorage.setItem('passwordHistory', JSON.stringify(passwordHistory));
+        updateHistoryList();
+    }
+
+    // 清空历史记录
+    document.getElementById('clear-history-btn').addEventListener('click', () => {
+        if (confirm('确定要清空所有历史记录吗？')) {
+            passwordHistory = [];
+            localStorage.removeItem('passwordHistory');
+            updateHistoryList();
+        }
+    });
+
     // 获取DOM元素
     const passwordDisplay = document.getElementById('password-display');
     const copyBtn = document.getElementById('copy-btn');
@@ -135,10 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (password) {
             passwordDisplay.value = password;
             updateStrengthIndicator(password);
+            addToHistory(password);
         }
     });
 
     copyBtn.addEventListener('click', copyPassword);
+
+    // 初始加载历史记录
+    updateHistoryList();
 
     // 初始生成密码
     generateBtn.click();

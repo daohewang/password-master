@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="main-wrapper">
+        <div class="container">
         <h1>密码生成器</h1>
         <div class="password-display-container">
             <input type="text" id="password-display" readonly>
@@ -39,7 +40,33 @@
             <div class="strength-bar"></div>
             <span id="strength-text"></span>
         </div>
+        <details class="instructions-container">
+            <summary>✨ 使用说明</summary>
+            <div class="instructions-content">
+                <h2>🚀 如何使用</h2>
+                <ol>
+                    <li>📏 选择密码长度（8-128个字符）</li>
+                    <li>✅ 勾选需要包含的字符类型：
+                        <ul>
+                            <li>🔠 大写字母 (A-Z)</li>
+                            <li>🔡 小写字母 (a-z)</li>
+                            <li>🔢 数字 (0-9)</li>
+                            <li>Symbols (!@#$等)</li>
+                        </ul>
+                    </li>
+                    <li>🎲 点击"生成密码"按钮</li>
+                    <li>📋 点击"复制"按钮将密码复制到剪贴板</li>
+                </ol>
+                <p class="tip">💡 提示：密码强度指示器会根据密码的长度和字符类型自动评估安全级别</p>
+            </div>
+        </details>
         <button id="generate-btn">生成密码</button>
+        </div>
+        <div class="history-container">
+            <h2>📜 历史记录</h2>
+            <ul id="history-list"></ul>
+            <button id="clear-history-btn">清空历史</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
